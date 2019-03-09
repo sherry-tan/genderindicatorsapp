@@ -18,12 +18,13 @@ from scripts.line import line_tab
 # In[39]:
 
 
-path = os.getcwd()
+#path = os.getcwd()
 file1 = "Gender_StatsEXCEL.xlsx"
 file2 = "CLASS.xls"
-filepath1  = os.path.join(path,'data',file1)
-filepath2  = os.path.join(path,'data',file2)
-
+#filepath1  = os.path.join(path,'data',file1)
+#filepath2  = os.path.join(path,'data',file2)
+filepath1 = "data/"+file1
+filepath2 = "data/"+file2
 
 # In[40]:
 
