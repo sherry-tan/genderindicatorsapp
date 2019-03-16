@@ -108,8 +108,24 @@ def line_tab(df):
     y_select = Select(title="Select indicator", value=cluster_indicators[3], options=list(cluster_indicators))
     y_select.on_change('value',update)
     
+
+    #add paragraph at top to explain what visualization does
+    text1 =  Div(text="""<font size = "+0.5" face = "Helvetica"><b> Explore gender indicator trends</b><br /><br /></font>""")
+
+
     #add explanatory text for checkbox group
-    text = Div(text="""Select cluster""")
+    text2 = Div(text="""Select cluster""")
+
+    #add a paragraph at bottom to help user navigate 
+    text3 = Div(text=
+        """<br />
+        <font size="-1"><b>Notes:</b></font>
+        <font size="-2">
+        <br />For source code and analysis of data, refer to the 
+            <a href = "https://github.com/sherry-tan/AnalyticsProjects/tree/master/Gender%20inequality%20in%20Singapore" target="_blank"> github repo </a>
+         <br />Visualization was based on 
+                <a href="https://datacatalog.worldbank.org/dataset/gender-statistics" target="_blank">World Bank Data</a>    
+            </font>""")
     
     #add selection widget
     cluster_selection = CheckboxGroup(labels = list(clusters), active=[11]) 
@@ -124,7 +140,7 @@ def line_tab(df):
     p = create_plot(source_pt, source_line, y)
     
     #layout widgets and plot
-    controls = WidgetBox(y_select, text, cluster_selection, width = 400, sizing_mode='scale_both')
+    controls = WidgetBox(text1, y_select, text2, cluster_selection,text3, width = 400, sizing_mode='scale_both')
     layout = row(controls, p)
 
     tab = Panel(child=layout, title = 'Trends')

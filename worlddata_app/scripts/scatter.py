@@ -143,15 +143,31 @@ def scatter_tab(df):
     y = y_select.value
     year = year_select.value
     
-    #add a paragraph of explanatory text for user
-    text = Div(text="""<font size="-1"><i>Click on legend to toggle data points on/off. <br />Data points for Singapore, where available, are outlined in black and appear as larger points.</i></font>""")
+
+
+    #add paragraph at top to explain what visualization does
+    text1 =  Div(text="""<font size = "+0.5" face = "Helvetica"><b> Explore relationship between gender indicators</b><br /><br /></font>""")
+
+
+    #add a paragraph at bottom to help user navigate 
+    text2 = Div(text=
+        """<br />
+        <font size="-1"><b>Notes:</b></font>
+        <font size="-2">
+        <br /> - Click on legend to toggle data points on/off. 
+        <br /> - Data points for Singapore, where available, are outlined in black and appear as larger points. 
+        <br /> - For source code and analysis of data, refer to the 
+            <a href = "https://github.com/sherry-tan/AnalyticsProjects/tree/master/Gender%20inequality%20in%20Singapore" target="_blank">github repo</a>
+        <br /> - Visualization was based on 
+            <a href="https://datacatalog.worldbank.org/dataset/gender-statistics" target="_blank">World Bank Data</a>   
+        </font>""")
 
     #get initial dataset and plot
     s1,s2,s3,s4,s5,s6,s7 = create_dataset(df, x, y, year)
     p = create_plot(s1,s2,s3,s4,s5,s6,s7, x, y, year)
 
     #layout widgets and plot
-    controls = WidgetBox(year_select, y_select, x_select, text, width = 400, sizing_mode='scale_both')
+    controls = WidgetBox(text1, year_select, y_select, x_select, text2, width = 400, sizing_mode='scale_both')
     layout = row(controls, p)
 
     tab = Panel(child=layout, title = 'Gender indicators')
